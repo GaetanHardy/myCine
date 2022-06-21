@@ -1,0 +1,11 @@
+#film {
+    border: 1px solid black;  
+    width: 350px;
+    text-align: center;
+}
+
+#listFilms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}

@@ -1,0 +1,14 @@
+<button routerLink="/addOrEdit" id="creerFilm">Ajouter un film</button>
+
+<div id="listFilms">
+    <div *ngFor="let film of listFilms">
+        <div id="film">
+            <a [routerLink]="['/detailsFilm', film.titre.split(' ').join('-')]" class="blocFilm">
+                {{ film.titre }} <br/>
+                {{ film.synopsis }} <br/>
+                {{ film.note }} <br/>
+            </a>
+            <button [routerLink]="['/addOrEdit', film.titre.split(' ').join('-')]">Modifier</button>
+        </div>
+    </div>
+</div>
