@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-or-edit-film',
@@ -14,35 +15,50 @@ import { ActivatedRoute } from '@angular/router';
 export class AddOrEditFilmComponent implements OnInit {
 
   film: Film | undefined;
+
+
   AddOrEditForm = new FormGroup({
-    titre: new FormControl('', Validators.required),
+    titre: new FormControl<string | null | undefined>('', Validators.required),
     synopsis: new FormControl(),
-    note: new FormControl<number | null>(null, [Validators.min(0), Validators.max(5)])
+    note: new FormControl<number | undefined | null>(null, [Validators.min(0), Validators.max(5)])
   });
 
-  constructor(private filmService: FilmServiceService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private filmService: FilmServiceService, private router: Router, private route: ActivatedRoute, private _httpClient: HttpClient) { }
 
   ngOnInit(): void {
-    const titre = this.route.snapshot.paramMap.get('titreFilm');
-    if(titre != null) {
-      console.log(titre.split("-").join(" "));
-      this.film = this.filmService.getFilmDetails(titre.split("-").join(" "));
-      if(this.film) this.AddOrEditForm.setValue({titre: this.film.titre, synopsis: this.film.synopsis, note: this.film.note});
+    const id = this.route.snapshot.paramMap.get('id');
+    if(id) {
+      const _filmsUrl = 'http://localhost:3000/film/' + id;
+      console.log(_filmsUrl);
+      this._httpClient.get<Film>(_filmsUrl)
+      .subscribe(films => {
+        this.film = films;
+        this.AddOrEditForm.setValue({titre: this.film?.titre, synopsis: this.film?.synopsis, note: this.film?.note});
+      });    
     }
   }
+    
 
   onSubmit() {
-    const titre = this.route.snapshot.paramMap.get('titreFilm');
+    const id = this.route.snapshot.paramMap.get('id');
     
-    if(titre) {
-      this.film = this.filmService.getFilmDetails(titre.split("-").join(" "));
-      if(this.film) this.filmService.setFilm(this.AddOrEditForm.value as Film);
-      this.router.navigate(["/"]);
-    }  else {
-      if(this.AddOrEditForm.value.titre != '') {
-        this.filmService.addFilm(this.AddOrEditForm.value as Film);
-        this.router.navigate(["/"]);
-      }
+    if(id) {
+      if(this.film && this.AddOrEditForm.value.titre != null)  {
+        const _filmsUrl = 'http://localhost:3000/film/' + id;
+        this._httpClient.put<Film>(_filmsUrl, this.AddOrEditForm.value)
+            .subscribe(films => {
+              this.router.navigate(["/"]);
+            });  
+      };
+      
+    } else {
+      if(this.AddOrEditForm.value.titre != undefined && this.AddOrEditForm.value.note != undefined) {
+          const _filmsUrl = 'http://localhost:3000/film';
+          this._httpClient.post<Film>(_filmsUrl, this.AddOrEditForm.value)
+              .subscribe(films => {
+                this.router.navigate(["/"]);
+              });  
+        };
     }
     
   }

@@ -1,0 +1,36 @@
+input, textarea, label {
+    width: 250px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid lightgray;
+}
+
+form {
+    padding: 5px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 50px;
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid yellow;
+    background-color: white;
+    border-radius: 6px;
+    width: 350px;
+}
+
+button {
+    margin-top: 10px;
+}
+
+#creerFilm {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#valider {
+    width: 100%;
+    border-radius: 8px;
+    height: 30px;
+    border: none;
+}

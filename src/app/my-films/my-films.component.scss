@@ -1,11 +1,44 @@
 #film {
-    border: 1px solid black;  
+    border: 1px solid yellow; 
+    border-radius: 6px; 
     width: 350px;
     text-align: center;
+    margin-top: 30px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+
+}
+a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #listFilms {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
+    width: 100%;
+}
+
+#creerFilm {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    button {
+        border: none;
+        border-radius: 6px;
+        width: 100px;
+        height: 35px;
+    }
 }

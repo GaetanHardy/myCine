@@ -1,14 +1,17 @@
 <button routerLink="/addOrEdit" id="creerFilm">Ajouter un film</button>
-
+<input type="text" id="rechercheFilm">
 <div id="listFilms">
     <div *ngFor="let film of listFilms">
         <div id="film">
-            <a [routerLink]="['/detailsFilm', film.titre.split(' ').join('-')]" class="blocFilm">
-                {{ film.titre }} <br/>
-                {{ film.synopsis }} <br/>
-                {{ film.note }} <br/>
+            <a [routerLink]="['/detailsFilm', film.id, film.titre.split(' ').join('-')]" class="blocFilm">
+                <p>Titre : {{ film.titre }}</p>
+                <p>Synopsis : {{ film.synopsis }}</p>
+                <p>Note : {{ film.note }} / 5</p>
             </a>
-            <button [routerLink]="['/addOrEdit', film.titre.split(' ').join('-')]">Modifier</button>
+            <div id="buttons">
+                <button [routerLink]="['/addOrEdit', film.id, film.titre.split(' ').join('-')]">Modifier</button>
+                <button (click)="ngOnDelete(film.id)">Supprimer</button>
+            </div>
         </div>
     </div>
 </div>

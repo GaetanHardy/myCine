@@ -1,0 +1,16 @@
+{
+  "film": [
+    {
+      "titre": "Lilo et Stitch",
+      "synopsis": "Meilleur film ever, vibes de fou furieux",
+      "note": 4,
+      "id": 3
+    },
+    {
+      "titre": "Le roi lion",
+      "synopsis": "C'est un lion et son père y meurt",
+      "note": 4,
+      "id": 4
+    }
+  ]
+}

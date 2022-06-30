@@ -7,8 +7,8 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   { path: '', component: MyFilmsComponent },
   { path: 'addOrEdit', component: AddOrEditFilmComponent },
-  { path: 'addOrEdit/:titreFilm', component: AddOrEditFilmComponent},
-  { path: 'detailsFilm/:titreFilm', component: FilmDetailsComponent}
+  { path: 'addOrEdit/:id/:titreFilm', component: AddOrEditFilmComponent},
+  { path: 'detailsFilm/:id/:titreFilm', component: FilmDetailsComponent}
 ];
 
 @NgModule({

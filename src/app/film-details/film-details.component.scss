@@ -1,4 +1,35 @@
-#detailFilm {
+#divDetail {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+#detailFilm {
+    border: 1px solid yellow; 
+    border-radius: 6px; 
+    width: 350px;
+    text-align: center;
+    margin-top: 30px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    justify-content: space-around;
+}
+
+#creerFilm {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.boutonForm {
+    width:fit-content;
+}
+
+#buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }
